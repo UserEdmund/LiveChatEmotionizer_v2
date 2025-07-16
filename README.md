@@ -17,6 +17,23 @@ A real-time emotion detection and chat application powered by **FastAPI**, **Ope
 **Clone the repo:**
 
 ```bash
-git clone https://your-repo-url.git
-cd your-repo
+git clone https://https://github.com/UserEdmund/LiveChatEmotionizer_v2.git
+cd LiveChatEmotionizer_v2
+```
+**Install dependencies:**
+```bash
+pip install -r requirements.txt
+```
 
+## 🚀 Running the Application
+
+**Start the FastAPI server:**
+```bash
+uvicorn backend.main:app --reload
+```
+
+**Open your browser and go to:**
+```markdown
+http://localhost:8000
+```
+📸 Allow webcam access if prompted 📊 See live video, emotion chart, and start chatting!

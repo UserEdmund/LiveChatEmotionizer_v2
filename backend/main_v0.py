@@ -97,6 +97,7 @@ async def ws_emotion(ws: WebSocket):
         pass
 
 @app.websocket("/ws/chat")
+
 async def ws_chat(ws: WebSocket):
     """
     Accepts chat JSON {text:str}, computes normalized
@@ -132,6 +133,8 @@ async def ws_chat(ws: WebSocket):
 
     except WebSocketDisconnect:
         pass
+
+
 
 if __name__ == "__main__":
     import uvicorn
