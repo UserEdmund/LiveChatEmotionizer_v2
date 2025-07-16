@@ -50,4 +50,21 @@ uvicorn backend.main:app --reload
 ```markdown
 http://localhost:8000
 ```
-# 📸 Allow webcam access if prompted 📊 See live video, emotion chart, and start chatting!
+
+
+
+**📸 Allow webcam access if prompted 📊 See live video, emotion chart, and start chatting!**
+
+# Acknowledgments
+
+### Special thanks to:
+
+- FER for facial emotion recognition
+
+- Ollama for open-source AI framework
+
+- FastAPI for efficient web framework
+
+- OpenCV for computer vision capabilities
+
+This project combines cutting-edge AI technologies to create an emotionally intelligent chat experience.
