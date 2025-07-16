@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Live Chat Emotionizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Live Chat Emotionizer</h1>
+
+  <section id="video-section">
+    <video id="video" autoplay muted playsinline></video>
+    <canvas id="hidden-canvas" style="display:none;"></canvas>
+  </section>
+
+  <section id="emotion-chart-section">
+    <canvas id="emotion-chart"></canvas>
+  </section>
+
+  <section id="chat-section">
+    <div id="chat-window"></div>
+    <input type="text" id="chat-input" placeholder="Type a message..." />
+    <button id="send-btn">Send</button>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
