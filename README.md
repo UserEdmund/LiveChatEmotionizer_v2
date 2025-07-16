@@ -10,6 +10,14 @@ A real-time emotion detection and chat application powered by **FastAPI**, **Ope
 - Webcam connected
 - ollama CLI / SDK configured with your AI model
 
+Make sure you downloaded an model using ollama
+
+If you didn't, a model can be downloaded this way(default : **llama2**):
+
+```bash
+ollama pull llama2
+```
+
 ---
 
 ## 🔧 Installation
@@ -27,6 +35,12 @@ pip install -r requirements.txt
 
 ## 🚀 Running the Application
 
+**Run Ollama server**
+
+```bash
+ollama serve
+```
+
 **Start the FastAPI server:**
 ```bash
 uvicorn backend.main:app --reload
@@ -36,4 +50,4 @@ uvicorn backend.main:app --reload
 ```markdown
 http://localhost:8000
 ```
-📸 Allow webcam access if prompted 📊 See live video, emotion chart, and start chatting!
+# 📸 Allow webcam access if prompted 📊 See live video, emotion chart, and start chatting!

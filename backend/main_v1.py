@@ -148,7 +148,7 @@ async def ws_chat(ws: WebSocket):
 
             # build a prompt that tells the model what to do with your emotions
             system_prompt = (
-                "You are an empathetic assistant. "
+                "You are an empathetic assistant. Now you have the user's emotions and their text message, your job is to modify the text into text that reflects the user's emotions.\n "
                 "Adjust your tone and wording according to these emotion levels:\n"
                 + "\n".join(f"{e}: {percentages[e]*100:.1f}%" for e in EMOTIONS)
             )
@@ -180,4 +180,4 @@ async def ws_chat(ws: WebSocket):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("backend.main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("backend.main_v1:app", host="0.0.0.0", port=8000, reload=True)

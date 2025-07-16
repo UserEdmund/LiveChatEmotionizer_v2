@@ -5,7 +5,7 @@ import numpy as np
 from fer import FER
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.staticfiles import StaticFiles
-from anyio import run_in_threadpool
+from fastapi.concurrency import run_in_threadpool
 import ollama
 
 app = FastAPI()
@@ -138,4 +138,4 @@ async def ws_chat(ws: WebSocket):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("backend.main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main_v0:app", host="0.0.0.0", port=8000, reload=True)
