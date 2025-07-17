@@ -95,4 +95,9 @@ http://localhost:8000
 
 - OpenCV for computer vision capabilities
 
-This project combines cutting-edge AI technologies to create an emotionally intelligent chat experience.
+## "Emotion is the chief source of all becoming-conscious." - Carl Jung
+
+📧 Contact: edmundmine@gmail.com
+
+
+🐛 Report Issues: GitHub Issues
