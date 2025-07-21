@@ -15,10 +15,10 @@ videoEl.srcObject = stream;
 const emotionCtx = document.getElementById("emotion-chart").getContext("2d");
 const labels = ["angry", "disgust", "fear", "happy", "sad", "surprise", "neutral"];
 const backgroundColors = [
-  'rgba(255, 99, 132, 0.7)', // angry
+  'rgba(176, 26, 58, 0.7)', // angry
   'rgba(75, 192, 192, 0.7)', // disgust
   'rgba(255, 206, 86, 0.7)', // fear
-  'rgba(54, 162, 235, 0.7)', // happy
+  'rgba(230, 75, 24, 1)', // happy
   'rgba(153, 102, 255, 0.7)', // sad
   'rgba(255, 159, 64, 0.7)', // surprise
   'rgba(201, 203, 207, 0.7)' // neutral
