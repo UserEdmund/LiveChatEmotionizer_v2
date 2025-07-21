@@ -1,50 +1,42 @@
 body {
+  background-color: #f8f9fa;
   font-family: Arial, sans-serif;
-  margin: 1rem;
 }
 
 h1 {
+  margin-bottom: 2rem;
   text-align: center;
 }
 
-#video-section {
-  text-align: center;
+.card {
   margin-bottom: 1rem;
 }
 
 #video {
-  width: 480px;
-  height: 360px;
-  background: #000;
-}
-
-#emotion-chart-section {
-  width: 480px;
-  margin: 0 auto 1rem;
-}
-
-#chat-section {
-  width: 480px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  height: auto;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
 }
 
 #chat-window {
   height: 200px;
-  border: 1px solid #ccc;
   overflow-y: auto;
   padding: 0.5rem;
-  margin-bottom: 0.5rem;
-  background: #f9f9f9;
+  background: #fff;
 }
 
-#chat-input {
-  flex: 1;
-  padding: 0.5rem;
+#chat-window p {
   margin-bottom: 0.5rem;
+  padding: 0.5rem;
 }
 
-#send-btn {
-  padding: 0.5rem;
+#chat-window p.text-end {
+  background-color: #dcf8c6;
+  align-self: flex-end;
+}
+
+#chat-window p.text-start {
+  background-color: #f1f1f1;
+  align-self: flex-start;
 }

@@ -12,10 +12,17 @@ const stream = canvasEl.captureStream(30);
 videoEl.srcObject = stream;
 
 // Chart.js Bar Chart
-const emotionCtx = document
-  .getElementById("emotion-chart")
-  .getContext("2d");
-const labels = ["angry","disgust","fear","happy","sad","surprise","neutral"];
+const emotionCtx = document.getElementById("emotion-chart").getContext("2d");
+const labels = ["angry", "disgust", "fear", "happy", "sad", "surprise", "neutral"];
+const backgroundColors = [
+  'rgba(255, 99, 132, 0.7)', // angry
+  'rgba(75, 192, 192, 0.7)', // disgust
+  'rgba(255, 206, 86, 0.7)', // fear
+  'rgba(54, 162, 235, 0.7)', // happy
+  'rgba(153, 102, 255, 0.7)', // sad
+  'rgba(255, 159, 64, 0.7)', // surprise
+  'rgba(201, 203, 207, 0.7)' // neutral
+];
 const chart = new Chart(emotionCtx, {
   type: "bar",
   data: {
@@ -23,12 +30,15 @@ const chart = new Chart(emotionCtx, {
     datasets: [{
       label: "Confidence",
       data: new Array(labels.length).fill(0),
-      backgroundColor: "rgba(54, 162, 235, 0.7)"
+      backgroundColor: backgroundColors,
+      borderColor: backgroundColors.map(color => color.replace('0.7', '1')),
+      borderWidth: 1
     }]
   },
   options: {
     animation: false,
-    scales: { y: { beginAtZero: true, max: 1 } }
+    scales: { y: { beginAtZero: true, max: 1 } },
+    maintainAspectRatio: false
   }
 });
 
@@ -48,10 +58,11 @@ wsVideo.onmessage = ({ data }) => {
 };
 
 // WebSocket: emotion data
+let currentEmotions = {};
 const wsEmotion = new WebSocket(`ws://${location.host}/ws/emotion`);
 wsEmotion.onmessage = ({ data }) => {
-  const emotions = JSON.parse(data);
-  chart.data.datasets[0].data = labels.map(l => emotions[l] || 0);
+  currentEmotions = JSON.parse(data);
+  chart.data.datasets[0].data = labels.map(l => currentEmotions[l] || 0);
   chart.update();
 };
 
@@ -60,18 +71,38 @@ const wsChat = new WebSocket(`ws://${location.host}/ws/chat`);
 wsChat.onmessage = ({ data }) => {
   const { response } = JSON.parse(data);
   const p = document.createElement("p");
+  p.className = "text-start bg-secondary text-white rounded p-2";
   p.textContent = `AI: ${response}`;
   chatWindow.appendChild(p);
   chatWindow.scrollTop = chatWindow.scrollHeight;
 };
 
+// Function to get dominant emotion
+function getDominantEmotion(emotions) {
+  let maxEmotion = "";
+  let maxValue = 0;
+  for (const [emotion, value] of Object.entries(emotions)) {
+    if (value > maxValue) {
+      maxValue = value;
+      maxEmotion = emotion;
+    }
+  }
+  return maxEmotion;
+}
+
+// Send button handler
 sendBtn.onclick = () => {
   const text = chatInput.value.trim();
   if (!text) return;
-  // display user message
+  const dominant = getDominantEmotion(currentEmotions);
   const p = document.createElement("p");
-  p.textContent = `You: ${text}`;
+  // FIX: Removed the non-standard "citt" and "bg" classes. Styling is handled by style.css.
+  p.className = "text-end rounded p-2";
+  p.textContent = `You: ${text} (${dominant})`;
   chatWindow.appendChild(p);
   wsChat.send(JSON.stringify({ text }));
   chatInput.value = "";
+  chatWindow.scrollTop = chatWindow.scrollHeight;
 };
+
+// FIX: Removed the extra closing brace that was here.
