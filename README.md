@@ -5,7 +5,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.103+-teal.svg)](https://fastapi.tiangolo.com/)
 [![License](https://img.shields.io/badge/license-MIT-orange)](LICENSE)
 
-**The world's first real-time chatbot framework with emotional context awareness and improve your text messages accordingly**  
+**A local real-time chatbot framework with emotional context awareness and improve your text messages accordingly**  
 Powered by **OpenCV**, **FER + MTCNN**, and **Ollama** for emotionally intelligent conversations.
 
 
