@@ -22,6 +22,8 @@ app.add_middleware(
 
 # --- Globals and Constants ---
 EMOTIONS = ["angry", "disgust", "fear", "happy", "sad", "surprise", "neutral"]
+EMOTION_THRESHOLD = 0.25 
+
 cumulative_stats = {e: 0.0 for e in EMOTIONS}
 latest_frame = None
 latest_emotions = {e: 0.0 for e in EMOTIONS}
@@ -57,7 +59,8 @@ async def capture_frames():
                 latest_emotions = {e: 0.0 for e in EMOTIONS}
             
             for e in EMOTIONS:
-                cumulative_stats[e] += latest_emotions.get(e, 0.0)
+                if(latest_emotions.get(e, 0.0) > EMOTION_THRESHOLD):
+                    cumulative_stats[e] += latest_emotions.get(e, 0.0)
 
         except Exception as e:
             print(f"Error during emotion detection: {e}")
@@ -124,13 +127,17 @@ async def ws_chat(ws: WebSocket):
             total = sum(cumulative_stats.values()) or 1.0
             percentages = {e: round(cumulative_stats[e] / total, 3) for e in EMOTIONS}
             
+            prompt_template = f"""
+            User message: {user_text}\nEmotion context: {percentages}\nRespond empathetically:
+            """
+            # --- PROMPT ENDS HERE ---
             # Fixed Ollama chat call
             response = await run_in_threadpool(
                 ollama.chat,
                 model='llama2:latest',  # Specify your model here
                 messages=[{
                     'role': 'user',
-                    'content': f"User message: {user_text}\nEmotion context: {percentages}\nRespond empathetically:"
+                    'content': prompt_template
                 }]
             )
             
